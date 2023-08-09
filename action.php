@@ -13,14 +13,14 @@
         return openssl_decrypt($encrypted, 'aes-256-cbc', $key, 0, $iv);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['encrypt'])) {
             $plaintext = $_POST['plaintext'];
-            $encryptionKey = $_POST['encryptionKey'];
+            $encryptionKey = $_POST['encryptionkey'];
             $encryptedText = encryptText($plaintext, $encryptionKey);
             echo "<h3>Encrypted Text:</h3>";
             echo "<p>$encryptedText</p>";
-        } elseif (isset($_POST['decrypt'])) {
+        } else if (isset($_POST['decrypt'])) {
             $encryptedText = $_POST['encryptedText'];
             $decryptionKey = $_POST['decryptionKey'];
             $decryptedText = decryptText($encryptedText, $decryptionKey);
